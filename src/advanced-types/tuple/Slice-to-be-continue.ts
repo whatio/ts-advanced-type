@@ -1,9 +1,6 @@
+import { NumberSubscripts } from './Subscript';
 import { Counter } from './Counter';
 import { AnyTuple } from './Tuple';
-import { At } from './At';
-import { Next } from './../num/Next';
-import { Length } from './../object/Length';
-import { Push } from './Push';
 
 /**
  * @description
@@ -14,11 +11,4 @@ import { Push } from './Push';
  * type test = Slice<Counter<40>, 2, 10>;         // [37, 36, 35, 34, 33, 32, 31, 30]
  * @author xfy
  */
-export type Slice<T extends AnyTuple, Start extends number, End extends number = Length<T>, U extends AnyTuple = []> = {
-    0: Slice<T, Next<Start>, End, Push<U, At<T, Start>>>;
-    1: U
-}[
-    Start extends Length<T>
-    ? 1
-    : Start extends End ? 1 : 0
-];
+export type Slice<T extends AnyTuple, Start extends NumberSubscripts<T>, End extends NumberSubscripts<T>, U extends AnyTuple = []> = {};

@@ -8,7 +8,7 @@ import { Counter } from './../tuple/Counter';
  * @param
  * T number
  * @example
- *type Test = Prev<30>;   //29
+ *type Test = Prev<39>;   //38
  * @author xfy
  */
 export type Prev<T extends number> = Length<Shift<Counter<T>>>;
