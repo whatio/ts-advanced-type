@@ -2,11 +2,12 @@ import { AnyTuple } from './../tuple/Tuple';
 import { Length } from './../object/Length';
 import { Shift } from './../tuple/Shift';
 import { Counter } from './../tuple/Counter';
+
 /**
  * @description
- * Return number `T` - `1` 
+ * Return number `N` - `1` 
  * @param
- * T number
+ * N number
  * @example
  *type Test = Prev<39>;   //38
  * @author xfy

@@ -1,3 +1,4 @@
+import { Shift } from './Shift';
 import { Cast } from './../utils/Cast';
 import { AnyTuple } from './Tuple';
 import { Unshift } from './Unshift';
@@ -26,3 +27,44 @@ type ____Counter<Len extends number, U extends AnyTuple = []> = {
     0: ____Counter<Len, Unshift<U, Length<U>>>;
     1: U;
 }[Length<U> extends Len ? 1 : 0];
+
+
+
+
+
+
+type AnyCounter = AnyTuple & {
+    prev: AnyCounter;
+    next: AnyCounter;
+};
+
+type Next<T extends AnyCounter> = T["next"];
+type Prev<T extends AnyCounter> = T["prev"];
+
+type TupleCounter<U extends AnyTuple> = U & {
+    next: TupleCounter<Unshift<U, Length<U>>>;
+    prev: TupleCounter<Shift<U>>;
+};
+
+type ZeroCounter = TupleCounter<[]>;
+
+type TupleCounterOf<Len extends number> = ____TupleCounterOf<Len> extends infer R ? Cast<R, AnyCounter> : never;
+type ____TupleCounterOf<Len extends number, T extends AnyCounter = ZeroCounter> = {
+    0: ____TupleCounterOf<Len, Next<T>>;
+    1: T;
+}[Length<T> extends Len ? 1 : 0];
+
+type T1 = TupleCounterOf<39>;
+
+
+type ____Add<T1 extends AnyCounter, T2 extends AnyCounter> = {
+    0: ____Add<Next<T1>, Prev<T2>>;
+    1: T1;
+}[Length<T2> extends 0 ? 1 : 0];
+
+
+type ____CounterOf<Len extends number, From extends number = 0> = ____Add<TupleCounterOf<Len>, TupleCounterOf<From>>;
+
+type Test = ____CounterOf<37, 40>;
+
+

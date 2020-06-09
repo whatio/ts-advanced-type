@@ -1,4 +1,13 @@
+import { Reverse } from './Reverse';
+import { Counter } from './Counter';
+import { Prev } from './../num/Prev';
+import { Next } from './../num/Next';
+import { First } from './First';
+import { Push } from './Push';
+import { Length } from './../object/Length';
+import { NumberSubscripts, StringSubscripts } from './Subscript';
 import { AnyTuple } from './Tuple';
+import { Shift } from './Shift';
 
 
 
@@ -9,4 +18,4 @@ import { AnyTuple } from './Tuple';
  * @param deleteCount The number of types to remove.
  * @param types Types to insert into the tuple in place of the deleted types.
  */
-type Splice<T extends AnyTuple, start extends number, deleteCount extends number = 0, types extends AnyTuple = []> = {};
+export type Splice<T extends AnyTuple, start extends NumberSubscripts<T>, deleteCount extends number = 0, types extends AnyTuple = []> = {};

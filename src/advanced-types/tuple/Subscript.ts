@@ -16,7 +16,7 @@ export type StringSubscripts<T extends AnyTuple> = Exclude<keyof T, keyof any[]>
  * @description
  * Return the `Union-Type` number-subscripts of the Tuple T
  * @example
- * type Test = NumberSubscripts<[string, true, false, boolean]>;   // "0" | "1" | "2" | "3"
+ * type Test = NumberSubscripts<[string, true, false, boolean]>;   // 0 | 1 | 2 | 3
  * @author xfy
  */
 export type NumberSubscripts<T extends AnyTuple> = ____NumberSubscripts<T> extends infer R ? Cast<R, number> : never;
