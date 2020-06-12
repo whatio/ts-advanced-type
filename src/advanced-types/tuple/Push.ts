@@ -1,10 +1,12 @@
+import { Cast } from './../utils/Cast';
 import { AnyTuple } from './Tuple';
-import { Concat } from './Concat';
+import { Overwrite } from '../object/Overwrite';
+import { Unshift } from './Unshift';
 /**
  * @description
- * Appends the new type `T`  to `Tuple`
+ * Appends the new type `U`  to `T`
  * @example
  *type Test = Push<[1, 2, 3], 4>;      //[1, 2, 3, 4]
  * @author xfy
  */
-export type Push<Tuple extends AnyTuple, T> = Concat<Tuple, [T]>;
+export type Push<T extends AnyTuple, U> = Cast<Overwrite<Unshift<T, any>, T & { [idx: string]: U }>, AnyTuple>;
