@@ -5,7 +5,7 @@ import { Prev } from './Prev';
  * @description
  * Return number `N1` - `N2`
  * @example
- *type Test = Sub<36, 35>;   //1
+ *type Test = Sub<35, 34>;   //1
  * @author xfy
  */
 export type Sub<N1 extends number, N2 extends number> = {
