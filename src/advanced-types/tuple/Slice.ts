@@ -27,6 +27,7 @@ type ____SliceInTwo<T extends AnyTuple, From extends number, U extends AnyTuple 
     0: ____SliceInTwo<Shift<T>, From, Push<U, First<T>>>;
     1: [U, T]
 }[Length<U> extends From ? 1 : 0];
+
 /**
  * @description
  * Return a section of the Tuple `T`. From index `I` to the end index of the Tuple `T`.

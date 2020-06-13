@@ -6,7 +6,7 @@ import { Length } from './../object/Length';
 /**
  * @description
  * Return a descending Tuple `T`
- * @param `Len` The `length` of the Tuple `T`
+ * @param `Len` The `length` of an tuple. support tuple size of 40 at most
  * @param `From` Start number
  * @example
 type Test = Counter<40>;            // [0, 1, 2, ... , 38, 39]
