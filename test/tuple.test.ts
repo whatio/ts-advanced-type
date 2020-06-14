@@ -1,5 +1,5 @@
-import { AnyTuple } from './../src/advanced-types/tuple/Tuple';
-import { First } from './../src/advanced-types/tuple/First';
+import { AnyTuple } from '../src/advanced-types/tuple/Tuple';
+import { First } from '../src/advanced-types/tuple/First';
 
 
 describe("Tuple", () => {
