@@ -4,13 +4,15 @@
     "module": "commonjs",
     "lib": [
       "es5",
+      "ES2015.Collection",
+      "ES2015.Iterable",
       "dom",
       "dom.iterable"
     ],
     "allowJs": true,
     "checkJs": true,
     "sourceMap": true,
-    "outDir": "./ouput",
+    "outDir": "./output",
     "removeComments": true,
     "strict": true,
     "alwaysStrict": true,
