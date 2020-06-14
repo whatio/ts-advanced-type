@@ -1,0 +1,24 @@
+{
+  "name": "ts-advanced-type",
+  "version": "1.0.0",
+  "description": "typescript advanced-type",
+  "main": ".src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/github-yeah/ts-advanced-type.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/github-yeah/ts-advanced-type/issues"
+  },
+  "homepage": "https://github.com/github-yeah/ts-advanced-type#readme",
+  "devDependencies": {
+    "ts-loader": "^7.0.5",
+    "typescript": "^3.9.5"
+  }
+}

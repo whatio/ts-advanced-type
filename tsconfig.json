@@ -3,16 +3,25 @@
     "target": "es5",
     "module": "commonjs",
     "lib": [
-      "DOM",
-      "ES2016"
+      "es5",
+      "dom",
+      "dom.iterable"
     ],
-    "sourceMap": false,
+    "allowJs": true,
+    "checkJs": true,
+    "sourceMap": true,
+    "outDir": "./ouput",
     "removeComments": true,
-    "noEmitOnError": true,
-    "declaration": true,
-    "skipLibCheck": true,
     "strict": true,
+    "alwaysStrict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "exclude": [
+    "output",
+    "node_modules"
+  ],
+  "include": [
+    "src"
+  ]
 }
