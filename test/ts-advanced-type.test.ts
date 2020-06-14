@@ -1,14 +1,14 @@
-import DummyClass from "../src/ts-advanced-type"
+import Main from "../src/ts-advanced-type"
 
 /**
- * Dummy test
+ * Main test
  */
-describe("Dummy test", () => {
+describe("Main test", () => {
   it("works if true is truthy", () => {
     expect(true).toBeTruthy()
   })
 
   it("DummyClass is instantiable", () => {
-    expect(new DummyClass()).toBeInstanceOf(DummyClass)
+    expect(new Main()).toBeInstanceOf(Main)
   })
 })
