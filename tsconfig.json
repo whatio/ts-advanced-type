@@ -13,6 +13,7 @@
     "checkJs": true,
     "sourceMap": true,
     "outDir": "./output",
+    "rootDirs": ["src"],
     "removeComments": true,
     "strict": true,
     "alwaysStrict": true,
