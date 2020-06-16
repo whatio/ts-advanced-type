@@ -1,46 +1,53 @@
-import { Cast } from './Cast';
-import { Intersection } from './Intersection';
-import { AnyTuple } from '../tuple/Tuple';
-import { Unshift } from '../tuple/Unshift';
+import { Cast } from './Cast'
+import { AnyTuple } from '../tuple/Tuple'
+import { Unshift } from '../tuple/Unshift'
+
+/**
+ * @description
+ * Union-Type to Intersection-Function-type
+ * @example
+ * type Test1 = IntersectionFunction<1 | true | string>;                               // ((_: string) => void) & ((_: true) => void) & ((_: 1) => void)
+ * type Test2 = IntersectionFunction<[1] | [2]>;                                           // ((_: [1]) => void) & ((_: [2]) => void)
+ * type Test3 = IntersectionFunction<1 | 2 | 3 | number>;                           // (_: number) => void
+ * @author xfy
+ */
+export type IntersectionFunction<U> = (U extends any
+? (_: (_: U) => void) => void
+: never) extends (_: infer R) => void
+  ? R
+  : never
 
 /**
  * @description
  * Return Last type from Union-Type;
  * @example
-type Test = LastUnion<1 | 2 | 3>;                                                        //3
-type Test2 = LastUnion<{ 0: 0 } | { true: true } | { "a": "a" }>;               //{ "a": "a" }
+ * type Test1 = LastUnion<1 | 2 | 3>;                                                        // 3
+ * type Test2 = LastUnion<{ 0: 0 } | { true: true } | { "a": "a" }>;               // { "a": "a" }
  * @author xfy
  */
-export type LastUnion<U> = Intersection<U> extends { (arg: infer P): any; } ? P : never;
+export type LastUnion<U> = IntersectionFunction<U> extends { (arg: infer P): any } ? P : never
 
 /**
  * @description
  * Return Union-type `U`, exclusive of the type at last.
  * @example
-type Test = PopUnion<1 | 2 | 3>;                                                        //1 | 2
-type Test2 = PopUnion<{ 0: 0 } | { true: true } | { "a": "a" }>;               //{ 0: 0 } | { true: true }
+ * type Test = PopUnion<1 | 2 | 3>;                                                        // 1 | 2
+ * type Test2 = PopUnion<{ 0: 0 } | { true: true } | { "a": "a" }>;               // { 0: 0 } | { true: true }
  * @author xfy
  */
-export type PopUnion<U> = Exclude<U, LastUnion<U>>;
+export type PopUnion<U> = Exclude<U, LastUnion<U>>
 
 /**
  * @description
  * Union-type to Tuple
  * @example
-type Test = UnionToTuple<1 | 2 | 3>;                                                        //[1, 2, 3]
-type Test2 = UnionToTuple<1 | 2 | 3 | number>;                                      //[number], not good
-type Test3 = UnionToTuple<{ 0: 0 } | { true: true } | { "a": "a" }>;               //[{ 0: 0 } , { true: true } , { "a": "a" }]
+ * type Test = UnionToTuple<1 | 2 | 3>;                                                        // [1, 2, 3]
+ * type Test2 = UnionToTuple<1 | 2 | 3 | number>;                                      // [number], not good
+ * type Test3 = UnionToTuple<{ 0: 0 } | { true: true } | { "a": "a" }>;               // [{ 0: 0 } , { true: true } , { "a": "a" }]
  * @author xfy
  */
-export type UnionToTuple<U> = ____UnionToTuple<U> extends infer R ? Cast<R, AnyTuple> : never;
+export type UnionToTuple<U> = ____UnionToTuple<U> extends infer R ? Cast<R, AnyTuple> : never
 type ____UnionToTuple<U, T extends AnyTuple = []> = {
-    0: ____UnionToTuple<PopUnion<U>, Unshift<T, LastUnion<U>>>;
-    1: T;
-}[LastUnion<U> extends never ? 1 : 0];
-
-
-
-
-
-
-
+  0: ____UnionToTuple<PopUnion<U>, Unshift<T, LastUnion<U>>>
+  1: T
+}[LastUnion<U> extends never ? 1 : 0]

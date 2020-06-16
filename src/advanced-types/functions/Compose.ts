@@ -1,6 +1,27 @@
-import { Assert } from './../utils/Assert';
-import { LastUnion } from './../utils/Union';
-import { ComposeParams, AnyFunction } from './Functions';
+import { Concat } from './../tuple/Concat'
+import { AnyTuple } from './../tuple/Tuple'
+import { Cast } from './../utils/Cast'
+import { LastUnion, PopUnion } from './../utils/Union'
+import { AnyFunction } from './Functions'
+
+/**
+ * @description
+ * Return composed parameters type
+ * @example
+ * @author xfy
+ */
+export type ComposeParams<T extends AnyFunction[]> = ____ComposeParams<
+  T extends (infer R)[] ? R : never
+> extends infer R
+  ? Cast<R, any[]>
+  : never
+type ____ComposeParams<U, T extends AnyTuple = []> = {
+  0: ____ComposeParams<
+    PopUnion<U>,
+    Concat<LastUnion<U> extends (...arg: infer P) => any ? P : never, T>
+  >
+  1: T
+}[LastUnion<U> extends never ? 1 : 0]
 
 /**
  * @description
@@ -8,9 +29,9 @@ import { ComposeParams, AnyFunction } from './Functions';
  * @example
  * @author xfy
  */
-export type Compose<T extends AnyFunction[]> = (...args: ComposeParams<T>) => ReturnType<Assert<LastUnion<T extends (infer R)[] ? R : never>, AnyFunction>>;
-
-
+export type Compose<T extends AnyFunction[]> = (
+  ...args: ComposeParams<T>
+) => ReturnType<Cast<LastUnion<T extends (infer R)[] ? R : never>, AnyFunction>>
 
 // let fn1 = (arg3: string[]) => arg3.toString();
 // let fn2 = (arg2: string) => [arg2];
