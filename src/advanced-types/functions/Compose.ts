@@ -41,4 +41,4 @@ type ____Compose<
 // let fn3 = (arg1: 1, arg2: 2, args3: number) => arg1 + arg2;
 // let fns = [fn1, fn2, fn3];
 // type Test = Compose<typeof fns>;         // (_: string[], _: string, _: 1, _: 2, arg3: number) => number
-// type Test2 = Compose<typeof fns, false>;         // (_: string[], _: string, _: 1, _: 2, arg3: number) => number
+// type Test2 = Compose<typeof fns, false>;         // (_: string[], _: string, _: 1, _: 2, arg3: number) => string
