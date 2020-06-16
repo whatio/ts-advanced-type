@@ -1,6 +1,5 @@
 import { Cast } from './Cast'
 import { AnyTuple } from '../tuple/Tuple'
-import { Unshift } from '../tuple/Unshift'
 
 /**
  * @description
@@ -47,7 +46,10 @@ export type PopUnion<U> = Exclude<U, LastUnion<U>>
  * @author xfy
  */
 export type UnionToTuple<U> = ____UnionToTuple<U> extends infer R ? Cast<R, AnyTuple> : never
-type ____UnionToTuple<U, T extends AnyTuple = []> = {
-  0: ____UnionToTuple<PopUnion<U>, Unshift<T, LastUnion<U>>>
+type ____UnionToTuple<U, T extends any[] = []> = {
+  0: ____UnionToTuple<
+    PopUnion<U>,
+    ((_: LastUnion<U>, ...tails: T) => void) extends (...args: infer P) => void ? P : never
+  >
   1: T
 }[LastUnion<U> extends never ? 1 : 0]
