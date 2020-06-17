@@ -1,5 +1,3 @@
-import { Cast } from './../src/advanced-types/utils/Cast'
-import { AnyTuple } from './../src/advanced-types/tuple/Tuple'
 import { First } from './../src/advanced-types/tuple/First'
 import { Counter } from './../src/advanced-types/tuple/Counter'
 
