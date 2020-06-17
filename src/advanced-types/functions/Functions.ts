@@ -3,4 +3,4 @@
  * Return any function
  * @author xfy
  */
-export type AnyFunction = (...args: any) => any
+export type AnyFunction<P extends any[] = any, R extends any = any> = (...args: P) => R
