@@ -1,20 +1,27 @@
 import { Cast } from './Cast'
 import { AnyTuple } from '../tuple/Tuple'
+import { Intersection } from './Intersection'
+
+/**
+ * @description
+ * Union-Type to Function-Union-type
+ * @example
+ * type Test1 = UnionFunction<1 | true | string>;                               // ((_: string) => any) | ((_: true) => any) | ((_: 1) => any)
+ * type Test2 = UnionFunction<1 | 2 | 3 | number>;                           // (_: number) => any
+ * @author xfy
+ */
+type UnionFunction<U> = U extends any ? (_: U) => any : never
 
 /**
  * @description
  * Union-Type to Intersection-Function-type
  * @example
- * type Test1 = IntersectionFunction<1 | true | string>;                               // ((_: string) => void) & ((_: true) => void) & ((_: 1) => void)
- * type Test2 = IntersectionFunction<[1] | [2]>;                                           // ((_: [1]) => void) & ((_: [2]) => void)
- * type Test3 = IntersectionFunction<1 | 2 | 3 | number>;                           // (_: number) => void
+ * type Test1 = IntersectionFunction<1 | true | string>;                               // ((_: string) => any) & ((_: true) => any) & ((_: 1) => any)
+ * type Test2 = IntersectionFunction<[1] | [2]>;                                           // ((_: [1]) => any) & ((_: [2]) => any)
+ * type Test3 = IntersectionFunction<1 | 2 | 3 | number>;                           // (_: number) => any
  * @author xfy
  */
-export type IntersectionFunction<U> = (U extends any
-? (_: (_: U) => void) => void
-: never) extends (_: infer R) => void
-  ? R
-  : never
+type IntersectionFunction<U> = Intersection<UnionFunction<U>>
 
 /**
  * @description

@@ -6,4 +6,8 @@
  * type Test2 = Equal<2, 2>; //true;
  * @author xfy
  */
-export type Equal<N1 extends number, N2 extends number> = N1 extends N2 ? true : false
+export type Equal<N1 extends number, N2 extends number> = N1 extends N2
+  ? N2 extends N1
+    ? true
+    : false
+  : false
