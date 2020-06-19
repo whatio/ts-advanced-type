@@ -2,4 +2,6 @@
 
 typescript advanced-type
 
-npm install
+> usage:  
+> npm install  
+> jest
