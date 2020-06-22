@@ -1,14 +1,15 @@
-import Main from "../src/ts-advanced-type"
+import { Shift } from './../src/advanced-types/tuple/Shift'
+import Main from '../src/ts-advanced-type'
 
 /**
  * Main test
  */
-describe("Main test", () => {
-  it("works if true is truthy", () => {
+describe('Main test', () => {
+  it('works if true is truthy', () => {
     expect(true).toBeTruthy()
   })
 
-  it("DummyClass is instantiable", () => {
+  it('DummyClass is instantiable', () => {
     expect(new Main()).toBeInstanceOf(Main)
   })
 })
