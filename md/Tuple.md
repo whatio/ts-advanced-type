@@ -107,3 +107,12 @@ type IDX = EndIndex<["a", "b", "c"]>;     //  2
 type Last<T extends any[]> = T extends [] ? never : T[Shift<T>["length"]];
 type Test = Last<["a", "b", "c"]>;     //  c
 ```
+
+Unshift
+Push
+Reverse
+Concat
+Slice
+Splice
+
+... to be continue;
